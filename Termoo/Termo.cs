@@ -64,6 +64,13 @@ namespace Termoo
 
     }
 
+    public void sortWordOfDay()
+    {
+      Random rnd = new Random();
+      int position = rnd.Next(0, 9);
+      getValidWords();
+      this.wordOfDay = this.words[position];
+    }
 
     //Isso ficaria bonitão em sqlite
     private void getValidWords()
