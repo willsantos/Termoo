@@ -1,9 +1,3 @@
-using System.Net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Termoo
 {
   public class Termo
@@ -11,11 +5,15 @@ namespace Termoo
     public string wordOfDay { get; set; }
     //private List<string> words = new List<string>();
     private string[] words = new string[10];
-    private int attempts = 0;
+    public List<char> LettersUsed = new List<char>();
+    public CharHits[] hits = new CharHits[5];
+
+    private char[] LastWord = new char[5];
+    public int Attempts = 0;
 
     public Status checkWords(string wordPlayed)
     {
-      attempts++;
+      Attempts++;
 
       if (wordPlayed == this.wordOfDay)
         return Status.WIN;
@@ -23,27 +21,60 @@ namespace Termoo
       this.getValidWords();
       if (!this.words.Contains(wordPlayed))
       {
-        attempts--;
+        Attempts--;
         return Status.UNKNOWN;
       }
 
 
-      if (attempts > 4)
+      if (Attempts > 4)
         return Status.GAMEOVER;
+
+      checkLetters(wordPlayed);
       return Status.WRONG;
     }
 
+
+    public void colorLetter()
+    {
+      for (int i = 0; i < 5; i++)
+      {
+        switch (this.hits[i])
+        {
+          case CharHits.INVALID:
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(this.LastWord[i]);
+            Console.ResetColor();
+            break;
+          case CharHits.WRONG:
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write(this.LastWord[i]);
+            Console.ResetColor();
+            break;
+          case CharHits.OK:
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(this.LastWord[i]);
+            Console.ResetColor();
+            break;
+          default:
+            throw new Exception();
+        }
+      }
+      Console.WriteLine();
+
+    }
     public CharHits[] checkLetters(string wordPlayed)
     {
 
       char[] lettersPlayed = wordPlayed.ToCharArray();
       char[] lettersDay = this.wordOfDay.ToCharArray();
-      CharHits[] hits = new CharHits[5];
+
 
       for (int i = 0; i < 5; i++)
       {
         if (lettersDay.Contains(lettersPlayed[i]))
         {
+          this.LastWord = lettersPlayed;
+
           if (lettersDay[i] == lettersPlayed[i])
           {
             hits[i] = CharHits.OK;
@@ -56,8 +87,10 @@ namespace Termoo
         }
         else
         {
+          LettersUsed.Add(lettersPlayed[i]);
           hits[i] = CharHits.INVALID;
         }
+
       }
 
       return hits;
