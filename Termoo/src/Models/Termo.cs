@@ -1,24 +1,34 @@
-namespace Termoo
+using Termoo.src.Models;
+namespace Termoo.src
 {
   public class Termo
   {
     public string wordOfDay { get; set; }
-    private string[] words = new string[10];
+
     public List<char> LettersUsed = new List<char>();
     public CharHits[] hits = new CharHits[5];
 
     private char[] LastWord = new char[5];
     public int Attempts = 0;
 
+    public Word words = new Word();
+
+    public Termo()
+    {
+      this.wordOfDay = words.sortWordOfDay();
+    }
+
     public Status checkWords(string wordPlayed)
     {
       Attempts++;
 
+      wordPlayed = Answer.formatWord(wordPlayed);
+
       if (wordPlayed == this.wordOfDay)
         return Status.WIN;
 
-      this.getValidWords();
-      if (!this.words.Contains(wordPlayed))
+
+      if (!words.isValidWord(wordPlayed))
       {
         Attempts--;
         return Status.UNKNOWN;
@@ -96,28 +106,7 @@ namespace Termoo
 
     }
 
-    public void sortWordOfDay()
-    {
-      Random rnd = new Random();
-      int position = rnd.Next(0, 9);
-      getValidWords();
-      this.wordOfDay = this.words[position];
-    }
 
-    //Isso ficaria bonitão em sqlite
-    private void getValidWords()
-    {
-      this.words[0] = "AVIÃO";
-      this.words[1] = "PAVÃO";
-      this.words[2] = "AVIAR";
-      this.words[3] = "PAVIO";
-      this.words[4] = "ÁUDIO";
-      this.words[5] = "COISA";
-      this.words[6] = "VEIAS";
-      this.words[7] = "ESQUI";
-      this.words[8] = "ÁGUIA";
-      this.words[9] = "ESPIÃ";
 
-    }
   }
 }
