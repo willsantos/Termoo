@@ -17,7 +17,7 @@ do
   if (game.LettersUsed.Count() > 0)
   {
     Console.WriteLine("Letras já usadas");
-    foreach (char item in game.LettersUsed)
+    foreach (char item in game.LettersUsed.Distinct())
     {
 
       Console.Write($"{item} ");
