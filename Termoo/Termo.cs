@@ -33,6 +33,39 @@ namespace Termoo
       return Status.WRONG;
     }
 
+    public CharHits[] checkLetters(string wordPlayed)
+    {
+
+      char[] lettersPlayed = wordPlayed.ToCharArray();
+      char[] lettersDay = this.wordOfDay.ToCharArray();
+      CharHits[] hits = new CharHits[5];
+
+      for (int i = 0; i < 5; i++)
+      {
+        if (lettersDay.Contains(lettersPlayed[i]))
+        {
+          if (lettersDay[i] == lettersPlayed[i])
+          {
+            hits[i] = CharHits.OK;
+          }
+          else
+          {
+            hits[i] = CharHits.WRONG;
+          }
+
+        }
+        else
+        {
+          hits[i] = CharHits.INVALID;
+        }
+      }
+
+      return hits;
+
+    }
+
+
+    //Isso ficaria bonitão em sqlite
     private void getValidWords()
     {
       this.words[0] = "AVIÃO";
@@ -42,7 +75,7 @@ namespace Termoo
       this.words[4] = "ÁUDIO";
       this.words[5] = "COISA";
       this.words[6] = "VEIAS";
-      this.words[7] = "ÉGUA";
+      this.words[7] = "ESQUI";
       this.words[8] = "ÁGUIA";
       this.words[9] = "ESPIÃ";
 
