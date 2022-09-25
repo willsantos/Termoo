@@ -12,7 +12,7 @@ namespace Tests
     [TestMethod]
     public void TestWordIsEqual()
     {
-      Termo game = new Termo();  
+      Termo game = new Termo();
       game.wordOfDay = "PAVÃO";
       string wordPlayed = "PAVÃO";
       var result = game.checkWords(wordPlayed);
@@ -21,7 +21,7 @@ namespace Tests
     [TestMethod]
     public void TestWordWithDifferentLetters()
     {
-      Termo game = new Termo();  
+      Termo game = new Termo();
       game.wordOfDay = "PAVÃO";
       string wordPlayed = "PAVIO";
       var result = game.checkWords(wordPlayed);
@@ -31,17 +31,35 @@ namespace Tests
     [TestMethod]
     public void TestWordWithLettersDifferentPosition()
     {
-      Termo game = new Termo();  
+      Termo game = new Termo();
       game.wordOfDay = "PAVÃO";
       string wordPlayed = "AVIÃO";
       var result = game.checkWords(wordPlayed);
       Assert.AreEqual(Status.WRONG, result);
     }
+    [TestMethod]
+    public void TestHitsLetters()
+    {
+      Termo game = new Termo();
+      game.wordOfDay = "PAVÃO";
+      string wordPlayed = "AVIÃO";
+      CharHits[] hits = new CharHits[5];
+      hits[0] = CharHits.WRONG;
+      hits[1] = CharHits.WRONG;
+      hits[2] = CharHits.INVALID;
+      hits[3] = CharHits.OK;
+      hits[4] = CharHits.OK;
+
+
+      var result = game.checkLetters(wordPlayed);
+
+      CollectionAssert.AreEquivalent(hits, result);
+    }
 
     [TestMethod]
     public void TestWordUnknown()
     {
-      Termo game = new Termo();  
+      Termo game = new Termo();
       game.wordOfDay = "PAVÃO";
       string wordPlayed = "ABIÃO";
       var result = game.checkWords(wordPlayed);
@@ -51,7 +69,7 @@ namespace Tests
     [TestMethod]
     public void TestAttempts()
     {
-      Termo game = new Termo();  
+      Termo game = new Termo();
       game.wordOfDay = "PAVÃO";
 
       string wordPlayed = "AVIÃO";
@@ -68,10 +86,10 @@ namespace Tests
       Assert.AreEqual(Status.GAMEOVER, result);
     }
 
-     [TestMethod]
+    [TestMethod]
     public void TestAttemptsWithUnknownWords()
     {
-      Termo game = new Termo();  
+      Termo game = new Termo();
       game.wordOfDay = "PAVÃO";
 
       string wordPlayed = "LLLLL";
