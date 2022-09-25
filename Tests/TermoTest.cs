@@ -68,5 +68,25 @@ namespace Tests
       Assert.AreEqual(Status.GAMEOVER, result);
     }
 
+     [TestMethod]
+    public void TestAttemptsWithUnknownWords()
+    {
+      Termo game = new Termo();  
+      game.wordOfDay = "PAVÃO";
+
+      string wordPlayed = "LLLLL";
+      var result = game.checkWords(wordPlayed);
+      result = game.checkWords(wordPlayed);
+      wordPlayed = "HHHHH";
+      result = game.checkWords(wordPlayed);
+      wordPlayed = "MMMMM";
+      result = game.checkWords(wordPlayed);
+      wordPlayed = "AAAAA";
+      result = game.checkWords(wordPlayed);
+      wordPlayed = "PAVÃO";
+      result = game.checkWords(wordPlayed);
+      Assert.AreEqual(Status.WIN, result);
+    }
+
   }
 }
