@@ -3,7 +3,6 @@ namespace Termoo
   public class Termo
   {
     public string wordOfDay { get; set; }
-    //private List<string> words = new List<string>();
     private string[] words = new string[10];
     public List<char> LettersUsed = new List<char>();
     public CharHits[] hits = new CharHits[5];
