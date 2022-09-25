@@ -75,15 +75,23 @@ namespace Tests
       string wordPlayed = "AVIÃO";
       var result = game.checkWords(wordPlayed);
       result = game.checkWords(wordPlayed);
-      wordPlayed = "AVIAR";
+      wordPlayed = "AVIaR";
       result = game.checkWords(wordPlayed);
       wordPlayed = "PAVIO";
       result = game.checkWords(wordPlayed);
-      wordPlayed = "ÁUDIO";
+      wordPlayed = "áUDIO";
       result = game.checkWords(wordPlayed);
       wordPlayed = "COISA";
       result = game.checkWords(wordPlayed);
       Assert.AreEqual(Status.GAMEOVER, result);
+    }
+
+    [TestMethod]
+    public void TestAcceptsFormat()
+    {
+      string wordPlayed = "PaVÃo";
+      var result = Answer.formatWord(wordPlayed);
+      Assert.AreEqual("PAVÃO", result);
     }
 
     [TestMethod]

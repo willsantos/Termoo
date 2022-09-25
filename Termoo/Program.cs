@@ -1,5 +1,7 @@
 ﻿using Termoo;
+Console.WriteLine("Hello World");
 
+/*
 Termo game = new Termo();
 game.sortWordOfDay();
 
@@ -64,4 +66,4 @@ do
     game.colorLetter();
 } while (game.Attempts < 5 && WordResult != Status.WIN);
 
-
+*/
