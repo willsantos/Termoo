@@ -1,7 +1,9 @@
-﻿using Termoo;
+using Termoo;
 
 Termo game = new Termo();
 game.sortWordOfDay();
+
+Status WordResult = Status.UNKNOWN;
 
 //DEBUG
 game.wordOfDay = "PAVÃO";
@@ -23,13 +25,13 @@ do
     Console.WriteLine();
   }
 
-  string wordPlayed = null;
+ 
 
 
   Console.WriteLine("Digite sua palavra");
-  wordPlayed = Console.ReadLine();
+  string wordPlayed = Console.ReadLine();
 
-  var WordResult = game.checkWords(wordPlayed);
+  WordResult = game.checkWords(wordPlayed);
 
   switch (WordResult)
   {
@@ -48,8 +50,8 @@ do
     default:
       throw new Exception();
   }
-
+  if (WordResult != Status.WIN)
   game.colorLetter();
-} while (game.Attempts < 5);
+} while (game.Attempts < 5 && WordResult != Status.WIN);
 
 
