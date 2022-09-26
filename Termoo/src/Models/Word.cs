@@ -17,22 +17,22 @@ namespace Termoo.src.Models
       return this.words[position];
     }
 
-    public bool isValidWord(string word) 
+    public bool isValidWord(string word)
         => this.words.Contains(word);
 
     //Isso ficaria bonitão em sqlite
     public void getValidWords()
     {
-      this.words[0] = "AVIÃO";
-      this.words[1] = "PAVÃO";
+      this.words[0] = "AVIAO";
+      this.words[1] = "PAVAO";
       this.words[2] = "AVIAR";
       this.words[3] = "PAVIO";
-      this.words[4] = "ÁUDIO";
+      this.words[4] = "AUDIO";
       this.words[5] = "COISA";
       this.words[6] = "VEIAS";
       this.words[7] = "ESQUI";
-      this.words[8] = "ÁGUIA";
-      this.words[9] = "ESPIÃ";
+      this.words[8] = "AGUIA";
+      this.words[9] = "ESPIA";
 
     }
 
