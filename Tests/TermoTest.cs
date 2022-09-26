@@ -13,7 +13,7 @@ namespace Tests
     public void TestWordIsEqual()
     {
       Termo game = new Termo();
-      game.wordOfDay = "PAVÃO";
+      game.wordOfDay = "PAVAO";
       string wordPlayed = "PAVÃO";
       var result = game.checkWords(wordPlayed);
       Assert.AreEqual(Status.WIN, result);
@@ -70,16 +70,16 @@ namespace Tests
     public void TestAttempts()
     {
       Termo game = new Termo();
-      game.wordOfDay = "PAVÃO";
+      game.wordOfDay = "PAVAO";
 
       string wordPlayed = "AVIÃO";
       var result = game.checkWords(wordPlayed);
       result = game.checkWords(wordPlayed);
-      wordPlayed = "AVIaR";
+      wordPlayed = "VEIAS";
       result = game.checkWords(wordPlayed);
       wordPlayed = "PAVIO";
       result = game.checkWords(wordPlayed);
-      wordPlayed = "áUDIO";
+      wordPlayed = "AUDIO";
       result = game.checkWords(wordPlayed);
       wordPlayed = "COISA";
       result = game.checkWords(wordPlayed);
@@ -91,14 +91,14 @@ namespace Tests
     {
       string wordPlayed = "PaVÃo";
       var result = Answer.formatWord(wordPlayed);
-      Assert.AreEqual("PAVÃO", result);
+      Assert.AreEqual("PAVAO", result);
     }
 
     [TestMethod]
     public void TestAttemptsWithUnknownWords()
     {
       Termo game = new Termo();
-      game.wordOfDay = "PAVÃO";
+      game.wordOfDay = "PAVAO";
 
       string wordPlayed = "LLLLL";
       var result = game.checkWords(wordPlayed);
