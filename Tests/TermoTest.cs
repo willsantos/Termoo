@@ -51,7 +51,7 @@ namespace Tests
       hits[4] = CharHits.OK;
 
 
-      var result = game.checkLetters(wordPlayed);
+      var result = Answer.checkLetters(wordPlayed,game.wordOfDay);
 
       CollectionAssert.AreEquivalent(hits, result);
     }

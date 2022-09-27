@@ -5,10 +5,7 @@ namespace Termoo.src
   {
     public string wordOfDay { get; set; }
 
-    public List<char> LettersUsed = new List<char>();
-    public CharHits[] hits = new CharHits[5];
-
-    private char[] LastWord = new char[5];
+    
     public int Attempts = 0;
 
     public Word words = new Word();
@@ -38,7 +35,7 @@ namespace Termoo.src
       if (Attempts > 4)
         return Status.GAMEOVER;
 
-      checkLetters(wordPlayed);
+      Answer.checkLetters(wordPlayed, this.wordOfDay);
       return Status.WRONG;
     }
 
@@ -47,21 +44,21 @@ namespace Termoo.src
     {
       for (int i = 0; i < 5; i++)
       {
-        switch (this.hits[i])
+        switch (Answer.Hits[i])
         {
           case CharHits.INVALID:
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write(this.LastWord[i]);
+            Console.Write(Answer.LastWord[i]);
             Console.ResetColor();
             break;
           case CharHits.WRONG:
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(this.LastWord[i]);
+            Console.Write(Answer.LastWord[i]);
             Console.ResetColor();
             break;
           case CharHits.OK:
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(this.LastWord[i]);
+            Console.Write(Answer.LastWord[i]);
             Console.ResetColor();
             break;
           default:
@@ -71,40 +68,7 @@ namespace Termoo.src
       Console.WriteLine();
 
     }
-    public CharHits[] checkLetters(string wordPlayed)
-    {
 
-      char[] lettersPlayed = wordPlayed.ToCharArray();
-      char[] lettersDay = this.wordOfDay.ToCharArray();
-
-
-      for (int i = 0; i < 5; i++)
-      {
-        if (lettersDay.Contains(lettersPlayed[i]))
-        {
-          this.LastWord = lettersPlayed;
-
-          if (lettersDay[i] == lettersPlayed[i])
-          {
-            hits[i] = CharHits.OK;
-          }
-          else
-          {
-            hits[i] = CharHits.WRONG;
-          }
-
-        }
-        else
-        {
-          LettersUsed.Add(lettersPlayed[i]);
-          hits[i] = CharHits.INVALID;
-        }
-
-      }
-
-      return hits;
-
-    }
 
 
 
