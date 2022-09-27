@@ -4,8 +4,8 @@ namespace Termoo.src
   public class Termo
   {
     public string wordOfDay { get; set; }
+    public static List<char> LettersUsed = new List<char>();
 
-    
     public int Attempts = 0;
 
     public Word words = new Word();
@@ -15,15 +15,14 @@ namespace Termoo.src
       this.wordOfDay = words.sortWordOfDay();
     }
 
-    public Status checkWords(string wordPlayed)
+
+    public Status Play(string wordPlayed)
     {
       Attempts++;
-
       wordPlayed = Answer.formatWord(wordPlayed);
 
       if (wordPlayed == this.wordOfDay)
         return Status.WIN;
-
 
       if (!words.isValidWord(wordPlayed))
       {
@@ -31,13 +30,14 @@ namespace Termoo.src
         return Status.UNKNOWN;
       }
 
-
       if (Attempts > 4)
         return Status.GAMEOVER;
 
       Answer.checkLetters(wordPlayed, this.wordOfDay);
       return Status.WRONG;
+
     }
+
 
 
     public void colorLetter()

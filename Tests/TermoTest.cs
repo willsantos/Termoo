@@ -15,7 +15,7 @@ namespace Tests
       Termo game = new Termo();
       game.wordOfDay = "PAVAO";
       string wordPlayed = "PAVÃO";
-      var result = game.checkWords(wordPlayed);
+      var result = game.Play(wordPlayed);
       Assert.AreEqual(Status.WIN, result);
     }
     [TestMethod]
@@ -24,7 +24,7 @@ namespace Tests
       Termo game = new Termo();
       game.wordOfDay = "PAVÃO";
       string wordPlayed = "PAVIO";
-      var result = game.checkWords(wordPlayed);
+      var result = game.Play(wordPlayed);
       Assert.AreEqual(Status.WRONG, result);
     }
 
@@ -34,7 +34,7 @@ namespace Tests
       Termo game = new Termo();
       game.wordOfDay = "PAVÃO";
       string wordPlayed = "AVIÃO";
-      var result = game.checkWords(wordPlayed);
+      var result = game.Play(wordPlayed);
       Assert.AreEqual(Status.WRONG, result);
     }
     [TestMethod]
@@ -62,7 +62,7 @@ namespace Tests
       Termo game = new Termo();
       game.wordOfDay = "PAVÃO";
       string wordPlayed = "ABIÃO";
-      var result = game.checkWords(wordPlayed);
+      var result = game.Play(wordPlayed);
       Assert.AreEqual(Status.UNKNOWN, result);
     }
 
@@ -73,16 +73,16 @@ namespace Tests
       game.wordOfDay = "PAVAO";
 
       string wordPlayed = "AVIÃO";
-      var result = game.checkWords(wordPlayed);
-      result = game.checkWords(wordPlayed);
+      var result = game.Play(wordPlayed);
+      result = game.Play(wordPlayed);
       wordPlayed = "VEIAS";
-      result = game.checkWords(wordPlayed);
+      result = game.Play(wordPlayed);
       wordPlayed = "PAVIO";
-      result = game.checkWords(wordPlayed);
+      result = game.Play(wordPlayed);
       wordPlayed = "AUDIO";
-      result = game.checkWords(wordPlayed);
+      result = game.Play(wordPlayed);
       wordPlayed = "COISA";
-      result = game.checkWords(wordPlayed);
+      result = game.Play(wordPlayed);
       Assert.AreEqual(Status.GAMEOVER, result);
     }
 
@@ -101,16 +101,16 @@ namespace Tests
       game.wordOfDay = "PAVAO";
 
       string wordPlayed = "LLLLL";
-      var result = game.checkWords(wordPlayed);
-      result = game.checkWords(wordPlayed);
+      var result = game.Play(wordPlayed);
+      result = game.Play(wordPlayed);
       wordPlayed = "HHHHH";
-      result = game.checkWords(wordPlayed);
+      result = game.Play(wordPlayed);
       wordPlayed = "MMMMM";
-      result = game.checkWords(wordPlayed);
+      result = game.Play(wordPlayed);
       wordPlayed = "AAAAA";
-      result = game.checkWords(wordPlayed);
+      result = game.Play(wordPlayed);
       wordPlayed = "PAVÃO";
-      result = game.checkWords(wordPlayed);
+      result = game.Play(wordPlayed);
       Assert.AreEqual(Status.WIN, result);
     }
 

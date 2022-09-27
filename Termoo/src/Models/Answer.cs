@@ -10,7 +10,7 @@ namespace Termoo.src.Models
   public class Answer
   {
     public static CharHits[] Hits = new CharHits[5];
-    public static List<char> LettersUsed = new List<char>();
+    
     public static char[] LastWord = new char[5];
 
     public static string formatWord(string wordPlayed)
@@ -48,7 +48,7 @@ namespace Termoo.src.Models
         }
         else
         {
-          LettersUsed.Add(lettersPlayed[i]);
+          Termo.LettersUsed.Add(lettersPlayed[i]);
           Hits[i] = CharHits.INVALID;
         }
 

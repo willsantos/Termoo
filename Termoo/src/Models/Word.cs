@@ -9,6 +9,7 @@ namespace Termoo.src.Models
   {
     private string[] words = new string[10];
 
+    
     public string sortWordOfDay()
     {
       Random rnd = new Random();
